@@ -231,4 +231,5 @@ export {
   removeVideoFromPlaylist,
   deletePlaylist,
   updatePlaylist,
+  authorizedOwner,
 };

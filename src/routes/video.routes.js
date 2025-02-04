@@ -6,6 +6,7 @@ import {
     publishAVideo,
     togglePublishStatus,
     updateVideo,
+    watchHistory,
 } from "../controllers/video.controller.js"
 import {verifyJWT} from "../middlewares/auth.middleware.js"
 import {upload} from "../middlewares/multer.middleware.js"
@@ -31,12 +32,15 @@ router
         publishAVideo
     );
 
+
+// Routes for specific video actions
 router
-    .route("/:videoId")
-    .get(getVideoById)
-    .delete(deleteVideo)
-    .patch(upload.single("thumbnail"), updateVideo);
+  .route("/:videoId")
+  .get(getVideoById) // Get a video by ID
+  .delete(deleteVideo) // Delete a video
+  .patch(upload.single("thumbnail"), updateVideo); // Update video details
 
+// Toggle video publish status
 router.route("/toggle/publish/:videoId").patch(togglePublishStatus);
-
+router.route("/watch-history").get(watchHistory);
 export default router
